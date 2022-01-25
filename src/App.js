@@ -50,17 +50,19 @@ class App extends Component {
     this.setState({ searchTerm: event.target.value });
   }
 
-
-
   render() {
 
-      const {searchTerm, list} = this.state;return (
+      const {searchTerm, list} = this.state;
+      
+      return (
       
       <div className="App">
         <h1>{this.state.header}</h1>
 
         <form>
-          <input type="text"
+          <input 
+            type="text"
+            value={searchTerm}
             onChange={this.onSearchChange}
           />
         </form>
@@ -84,6 +86,7 @@ class App extends Component {
           </div>
         )}
       </div>
+
     );
   }
 }
