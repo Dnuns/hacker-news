@@ -33,8 +33,7 @@ class App extends Component {
 
     this.state = {
       list,
-      searchTerm: '',
-      header
+      searchTerm: ''
     };
 
     this.onDismiss = this.onDismiss.bind(this);
@@ -57,7 +56,6 @@ class App extends Component {
       return (
       
       <div className="App">
-        <h1>{this.state.header}</h1>
 
         <form>
           <input 
@@ -72,9 +70,13 @@ class App extends Component {
             <span>
               <a href={item.url}>{item.title}</a>
             </span>
+
             <span>{item.author}</span>
+
             <span>{item.num_comments}</span>
+
             <span>{item.points}</span>
+
             <span>
               <button
                 onClick={() => this.onDismiss(item.objectID)}
