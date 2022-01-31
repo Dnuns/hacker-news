@@ -56,7 +56,15 @@ class App extends Component {
       return (
       
       <div className="App">
-
+        <Search 
+          value={searchTerm} 
+          onChange={this.onSearchChange}
+        />
+        <Table 
+          list={list}
+          patern={searchTerm}
+          onDismiss={this.onDismiss}
+        />
         <form>
           <input 
             type="text"
@@ -89,6 +97,50 @@ class App extends Component {
         )}
       </div>
 
+    );
+  }
+}
+
+class Search extends Component {
+  render(){
+    const {value, onChange} = this.props;
+    return (
+      <form>
+        <input
+          type="text"
+          value={value}
+          onChange={onChange}
+        />
+      </form>
+    );
+  }
+}
+
+class Table extends Component {
+  render(){
+    const {list, patern, onDismiss} = this.props;
+
+    return(
+      <div>
+        {list.filter(isSearched(patern)).map(item =>
+          <div key={item.objectID}>
+            <span>
+              <a href={item.url}>{item.title}</a>
+            </span>
+            <span>{item.author}</span>          
+            <span>{item.num_comments}</span>          
+            <span>{item.points}</span>          
+            <span>
+              <button
+                onClick={()=> onDismiss(item.objectID)}
+                type="button"
+              >
+                Dismiss
+              </button>
+            </span>
+          </div>          
+          )}
+      </div>
     );
   }
 }
