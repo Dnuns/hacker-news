@@ -1,8 +1,6 @@
 import './App.css';
 import { Component } from 'react';
 
-const header = "Authors"
-
 const list = [
   {
     title: 'React',
@@ -34,6 +32,7 @@ class App extends Component {
     this.state = {
       list,
       searchTerm: ''
+      
     };
 
     this.onDismiss = this.onDismiss.bind(this);
