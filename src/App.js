@@ -25,7 +25,7 @@ const list = [
     num_comments: 2,
     points: 5,
     objectID: 2,
-  }
+  },
 ];
 
 const isSearched = (searchTerm) => (item) =>
@@ -58,30 +58,23 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Search 
-          value={searchTerm} 
-          onChange={this.onSearchChange}
-        >
+        <Search value={searchTerm} onChange={this.onSearchChange}>
           Search
         </Search>
-        <Table 
-          list={list} 
-          patern={searchTerm} 
-          onDismiss={this.onDismiss} 
-        />
+        <Table list={list} patern={searchTerm} onDismiss={this.onDismiss} />
       </div>
     );
   }
 }
 
-const Search = ({ value, onChange, children }) => {
+const Search = ({ value, onChange, children }) =>
   <form>
     {children}
     <input type="text" value={value} onChange={onChange} />
   </form>;
-}
 
-const Table = ({ list, patern, onDismiss }) => {
+
+const Table = ({ list, patern, onDismiss }) =>
   <div>
     {list.filter(isSearched(patern)).map((item) => (
       <div key={item.objectID}>
@@ -92,14 +85,20 @@ const Table = ({ list, patern, onDismiss }) => {
         <span>{item.num_comments}</span>
         <span>{item.points}</span>
         <span>
-          <button onClick={() => onDismiss(item.objectID)} type="button">
+          <Button 
+            onClick={() => onDismiss(item.objectID)}
+          >
             Dismiss
-          </button>
+          </Button>
         </span>
       </div>
     ))}
   </div>;
-}
+
+const Button = ({onClick, className = "", children}) =>
+  <button onClick={onClick} className={className} type="button">
+    {children}
+  </button>;
 
 export default App;
 
