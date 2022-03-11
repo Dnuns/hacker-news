@@ -78,35 +78,49 @@ const Search = ({ value, onChange, children }) => (
   </form>
 );
 
-const Table = ({ list, patern, onDismiss }) => (
+const Table = function ({ list, patern, onDismiss }) {
+  
+  const largeColumn = {
+    width: "40%",
+  }
+
+  const midColumn = {
+    width: "30%",
+  }
+
+  const smallColumn = {
+    width: "10%",
+  }
+
+  return (
   <div className="table">
     <div className="table-row">
-      <span style={{ width: "40%", fontWeight:"700" }}>{`Title`}</span>
-      <span style={{ width: "30%", fontWeight:"700" }}>{`Author`}</span>
-      <span style={{ width: "10%", fontWeight:"700" }}>{`Comments`}</span>
-      <span style={{ width: "10%", fontWeight:"700" }}>{`Points`}</span>
-      <span style={{ width: "10%", fontWeight:"700" }}></span>
+      <span style={{ width: "40%", fontWeight: "700" }}>{`Title`}</span>
+      <span style={{ width: "30%", fontWeight: "700" }}>{`Author`}</span>
+      <span style={{ width: "10%", fontWeight: "700" }}>{`Comments`}</span>
+      <span style={{ width: "10%", fontWeight: "700" }}>{`Points`}</span>
+      <span style={{ width: "10%", fontWeight: "700" }}></span>
     </div>
     {list.filter(isSearched(patern)).map((item) => (
       <div key={item.objectID} className="table-row">
-        <span style={{ width: "40%" }}>
+        <span style={largeColumn}>
           <a href={item.url}>{item.title}</a>
         </span>
-        <span style={{ width: "30%" }}>{item.author}</span>
-        <span style={{ width: "10%" }}>{item.num_comments}</span>
-        <span style={{ width: "10%" }}>{item.points}</span>
-        <span style={{ width: "10%" }}>
+        <span style={midColumn}>{item.author}</span>
+        <span style={smallColumn}>{item.num_comments}</span>
+        <span style={smallColumn}>{item.points}</span>
+        <span style={smallColumn}>
           <Button
             onClick={() => onDismiss(item.objectID)}
-            className={"button-inline"}
+            className={"button-active"}
           >
             Dismiss
           </Button>
         </span>
       </div>
     ))}
-  </div>
-);
+  </div>)
+};
 
 const Button = ({ onClick, className = "", children }) => (
   <button onClick={onClick} className={className} type="button">
