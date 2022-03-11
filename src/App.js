@@ -83,7 +83,7 @@ const Table = ({ list, patern, onDismiss }) => (
     <div className="table-row">
       <span style={{ width: "40%", fontWeight:"700" }}>{`Title`}</span>
       <span style={{ width: "30%", fontWeight:"700" }}>{`Author`}</span>
-      <span style={{ width: "10%", fontWeight:"700" }}>{`Num_comments`}</span>
+      <span style={{ width: "10%", fontWeight:"700" }}>{`Comments`}</span>
       <span style={{ width: "10%", fontWeight:"700" }}>{`Points`}</span>
       <span style={{ width: "10%", fontWeight:"700" }}></span>
     </div>
