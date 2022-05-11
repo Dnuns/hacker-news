@@ -4,6 +4,11 @@ body {
   font: 400 14px CoreSans, Arial, sans-serif;
 }
 
+/*added*/
+.interactions form input{
+  margin-left: 10px;
+}
+
 a {
   color: #222;
 }
