@@ -140,4 +140,4 @@ const Button = ({ onClick, className = "", children }) => (
 export default App;
 
 //Where were we?
-//->ES6 e o Operador Spread
+//-> Efetuando consultas do lado do cliente ou do servidor
