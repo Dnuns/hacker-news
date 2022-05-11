@@ -130,7 +130,7 @@ const Table = function ({ list, onDismiss }) {
         <span style={{ width: "10%", fontWeight: "700" }}>{`Points`}</span>
         <span style={{ width: "10%", fontWeight: "700" }}></span>
       </div>
-      {list.map((item) => (
+      {list.map(item => (
         <div key={item.objectID} className="table-row">
           <span style={largeColumn}>
             <a href={item.url} target="_blank">{item.title}</a>
