@@ -25,15 +25,16 @@ class App extends Component {
 
   }
 
-  setSearchTopStories(result) {
-    this.setState({ result });
-  }
-
+  
   fetchSearchTopStories(searchTerm) {
     fetch(`${url}${searchTerm}`)
-      .then(response => response.json())
-      .then(result => this.setSearchTopStories(result))
-      .catch(error => error);
+    .then(response => response.json())
+    .then(result => this.setSearchTopStories(result))
+    .catch(error => error);
+  }
+  
+  setSearchTopStories(result) {
+    this.setState({ result });
   }
 
   onSearchChange(event) {
@@ -71,7 +72,8 @@ class App extends Component {
       <div className="App">
         <div className="page">
           <div className="interactions">
-            <Search value={searchTerm}
+            <Search 
+              value={searchTerm}
               onChange={this.onSearchChange}
               onSubmit={this.onSearchSubmit}
             >
