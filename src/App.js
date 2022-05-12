@@ -107,11 +107,19 @@ class App extends Component {
               onDismiss={this.onDismiss}
             />
           }
+          <div style={{display:"flex", justifyContent:"center", gap:"10px"}}>
+            <div className="interactions">
+            <Button onClick={() => this.fetchSearchTopStories(searchTerm, page - 1)}>
+              Previous
+            </Button>
+          </div>
           <div className="interactions">
             <Button onClick={() => this.fetchSearchTopStories(searchTerm, page + 1)}>
               More
             </Button>
           </div>
+          </div>
+          
         </div>
       </div>
     );
