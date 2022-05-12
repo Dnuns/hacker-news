@@ -16,7 +16,8 @@ class App extends Component {
     this.state = {
       results: null,
       searchKey: '',
-      searchTerm: DEFAULT_QUERY
+      searchTerm: DEFAULT_QUERY,
+      error: null
     };
 
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
@@ -60,7 +61,7 @@ class App extends Component {
       .then(response => response.json())
       .then(result => {
         this.setSearchTopStories(result)
-      }).catch(error => error);
+      }).catch(error => this.setState({ error }));
   }
 
 
@@ -77,7 +78,7 @@ class App extends Component {
     if (this.needsToSearchTopStories(searchTerm)) {
       this.fetchSearchTopStories(searchTerm);
     }
-    
+
     event.preventDefault();
   }
 
@@ -103,11 +104,15 @@ class App extends Component {
 
 
   render() {
-    const { searchTerm, results, searchKey } = this.state;
+    const { searchTerm, results, searchKey, error } = this.state;
     const page = (results && results[searchKey] && results[searchKey].page) || 0;
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
 
-    if (!results) { return null; }
+    //(if (!results) { return null; }
+
+    if (error) {
+      return <p>Something went wrong.</p>
+    }
 
     return (
       <div className="App">
@@ -122,10 +127,14 @@ class App extends Component {
             </Search>
           </div>
           {
-            <Table
-              list={list}
-              onDismiss={this.onDismiss}
-            />
+            error
+              ? <div className="interactions">
+                <p>Something went wrong.</p>
+              </div>
+              : <Table
+                list={list}
+                onDismiss={this.onDismiss}
+              />
           }
           <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
             <div className="interactions">
