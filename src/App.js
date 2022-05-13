@@ -146,13 +146,13 @@ class App extends Component {
               />
           }
           <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
-            {page === 0 ? 
-            null :
-            <div className="interactions">
-              <Button onClick={() => this.fetchSearchTopStories(searchKey, page - 1)}>
-                Less
-              </Button>
-            </div>}
+            {page === 0 ?
+              null :
+              <div className="interactions">
+                <Button onClick={() => this.fetchSearchTopStories(searchKey, page - 1)}>
+                  Less
+                </Button>
+              </div>}
             <div className="interactions">
               <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
                 More
@@ -230,6 +230,12 @@ const Button = ({ onClick, className = "", children }) => (
 );
 
 export default App;
+
+export {
+  Button,
+  Search,
+  Table,
+};
 
 //Where were we?
 //-> Efetuando consultas do lado do cliente ou do servidor
