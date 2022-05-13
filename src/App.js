@@ -146,11 +146,13 @@ class App extends Component {
               />
           }
           <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
+            {page === 0 ? 
+            null :
             <div className="interactions">
               <Button onClick={() => this.fetchSearchTopStories(searchKey, page - 1)}>
-                Previous
+                Less
               </Button>
-            </div>
+            </div>}
             <div className="interactions">
               <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
                 More
