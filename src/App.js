@@ -2,6 +2,9 @@ import "./App.css";
 import { Component } from "react";
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 
 const DEFAULT_QUERY = 'redux';
@@ -12,7 +15,7 @@ const PARAM_SEARCH = 'query=';
 const PARAM_PAGE = 'page=';
 const PARAM_HPP = 'hitsPerPage=';
 
-const Loading = () => <div>Loading ...</div>;
+const Loading = () => <div><FontAwesomeIcon icon={faSpinner} color="green" /></div>;
 
 
 class App extends Component {
