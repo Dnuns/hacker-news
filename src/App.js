@@ -1,6 +1,7 @@
 import "./App.css";
 import { Component } from "react";
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 
 const DEFAULT_QUERY = 'redux';
@@ -166,6 +167,8 @@ class App extends Component {
   }
 }
 
+
+
 const Search = ({ value, onChange, onSubmit, children }) => (
   <form onSubmit={onSubmit}>
     <input
@@ -178,6 +181,13 @@ const Search = ({ value, onChange, onSubmit, children }) => (
     </button>
   </form>
 );
+
+Search.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+}
 
 const Table = function ({ list, onDismiss }) {
 
@@ -223,11 +233,34 @@ const Table = function ({ list, onDismiss }) {
     </div>)
 };
 
+Table.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      objectID: PropTypes.string.isRequired,
+      author: PropTypes.string,
+      url: PropTypes.string,
+      num_comments: PropTypes.number,
+      points: PropTypes.number,
+    })
+  ).isRequired,
+  onDismiss: PropTypes.func.isRequired,
+};
+
+
+
 const Button = ({ onClick, className = "", children }) => (
   <button onClick={onClick} className={className} type="button">
     {children}
   </button>
 );
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
+
+
 
 export default App;
 
