@@ -15,7 +15,8 @@ const PARAM_SEARCH = 'query=';
 const PARAM_PAGE = 'page=';
 const PARAM_HPP = 'hitsPerPage=';
 
-const Loading = () => <div ><FontAwesomeIcon style={{fontSize:35}} icon={faSpinner} color="green" /></div>;
+
+
 
 
 class App extends Component {
@@ -164,7 +165,7 @@ class App extends Component {
               />
           }
           <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
-            {(page === 0 || isLoading)?
+            {(page === 0 || isLoading) ?
               null :
               <div className="interactions">
                 <Button onClick={() => this.fetchSearchTopStories(searchKey, page - 1)}>
@@ -172,12 +173,11 @@ class App extends Component {
                 </Button>
               </div>}
             <div className="interactions">
-              {isLoading
-                ? <Loading />
-                : <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+              <ButtonWithLoading
+                isLoading={isLoading}
+                onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
                   More
-                </Button>
-              }
+                </ButtonWithLoading>
             </div>
           </div>
 
@@ -284,8 +284,6 @@ Table.propTypes = {
   onDismiss: PropTypes.func.isRequired,
 };
 
-
-
 const Button = ({ onClick, className = "", children }) => (
   <button onClick={onClick} className={className} type="button">
     {children}
@@ -298,7 +296,15 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+const Loading = () => <div ><FontAwesomeIcon style={{ fontSize: 35 }} icon={faSpinner} color="green" /></div>;
 
+
+const withLoading = (Component) => ({isLoading, ...rest}) =>
+  isLoading
+    ? <Loading />
+    : <Component {...rest} />
+
+const ButtonWithLoading = withLoading(Button);
 
 export default App;
 
