@@ -15,7 +15,7 @@ const PARAM_SEARCH = 'query=';
 const PARAM_PAGE = 'page=';
 const PARAM_HPP = 'hitsPerPage=';
 
-const Loading = () => <div><FontAwesomeIcon icon={faSpinner} color="green" /></div>;
+const Loading = () => <div ><FontAwesomeIcon style={{fontSize:35}} icon={faSpinner} color="green" /></div>;
 
 
 class App extends Component {
