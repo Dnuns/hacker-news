@@ -9,6 +9,10 @@ body {
   margin-left: 10px;
 }
 
+.warning{
+  text-align: center !important;
+}
+
 a {
   color: #222;
 }

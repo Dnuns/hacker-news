@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { sortBy } from 'lodash'
 import classNames from 'classnames';
-import { render } from 'react-dom';
 
 
 const DEFAULT_QUERY = 'redux';
@@ -27,6 +26,27 @@ const SORTS = {
   POINTS: list => sortBy(list, 'points').reverse(),
 };
 
+const updateSearchTopStoriesState = (hits, page) => (prevState) => {
+  const { searchKey, results } = prevState;
+
+  const oldHits = results && results[searchKey]
+    ? results[searchKey].hits
+    : [];
+
+  const updatedHits = [
+    ...oldHits,
+    ...hits
+  ];
+
+  return {
+    results: {
+      ...results,
+      [searchKey]: { hits: updatedHits, page }
+    },
+    isLoading: false
+  };
+};
+
 
 class App extends Component {
 
@@ -43,12 +63,12 @@ class App extends Component {
       isLoading: false,
     };
 
-    this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
     this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
-    this.onSearchChange = this.onSearchChange.bind(this);
-    this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
 
   }
 
@@ -58,25 +78,7 @@ class App extends Component {
 
   setSearchTopStories(result) {
     const { hits, page } = result;
-    const { searchKey, results } = this.state;
-
-    const oldHits = results && results[searchKey]
-      ? results[searchKey].hits
-      : [];
-
-    const updatedHits = [
-      ...oldHits,
-      ...hits
-    ];
-
-
-    this.setState({
-      results: {
-        ...results,
-        [searchKey]: { hits: updatedHits, page }
-      },
-      isLoading: false
-    });
+    this.setState(updateSearchTopStoriesState(hits, page))
   }
 
   fetchSearchTopStories(searchTerm, page = 0) {
@@ -144,8 +146,6 @@ class App extends Component {
 
     const page = (results && results[searchKey] && results[searchKey].page) || 0;
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
-
-    //(if (!results) { return null; }
 
     if (error) {
       return <p>Something went wrong.</p>
@@ -237,6 +237,7 @@ Search.propTypes = {
 }
 
 class Table extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -264,6 +265,11 @@ class Table extends Component {
       isSortReverse,
     } = this.state;
 
+    const sortedList = SORTS[sortKey](list);
+    const reverseSortedList = isSortReverse
+      ? sortedList.reverse()
+      : sortedList;
+
     const largeColumn = {
       width: "40%",
     }
@@ -275,11 +281,6 @@ class Table extends Component {
     const smallColumn = {
       width: "10%",
     }
-
-    const sortedList = SORTS[sortKey](list);
-    const reverseSortedList = isSortReverse
-      ? sortedList.reverse()
-      : sortedList;
 
     return (
       <div className="table">
@@ -406,5 +407,3 @@ const Sort = ({ sortKey, activeSortKey, onSort, children }) => {
   );
 }
 
-//Where were we?
-//-> ordenação avançada
