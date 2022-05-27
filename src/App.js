@@ -373,7 +373,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const Loading = () => <div ><FontAwesomeIcon style={{ fontSize: 35 }} icon={faSpinner} color="green" /></div>;
+const Loading = () => <div ><FontAwesomeIcon className='spinner' style={{ fontSize: 60}} icon={faSpinner} color="green" /></div>;
 
 
 const withLoading = (Component) => ({ isLoading, ...rest }) =>
