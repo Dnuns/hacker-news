@@ -177,12 +177,13 @@ class App extends Component {
             {(page === 0 || isLoading) ?
               null :
               <div className="interactions">
-                <Button onClick={() => this.fetchSearchTopStories(searchKey, page - 1)}>
+                <Button className='btn btn-primary' onClick={() => this.fetchSearchTopStories(searchKey, page - 1)}>
                   Less
                 </Button>
               </div>}
             <div className="interactions">
               <ButtonWithLoading
+                className='btn btn-primary'
                 isLoading={isLoading}
                 onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
                 More
@@ -214,14 +215,15 @@ class Search extends Component {
       children } = this.props;
 
     return (
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='align-middle'>
         <input
+          className='align-middle'
           type="text"
           value={value}
           onChange={onChange}
           ref={(node) => { this.input = node; }}
         />
-        <button type="submit">
+        <button className='btn btn-primary ms-2 align-middle' type="submit">
           {children}
         </button>
       </form>
@@ -270,80 +272,75 @@ class Table extends Component {
       ? sortedList.reverse()
       : sortedList;
 
-    const largeColumn = {
-      width: "40%",
-    }
-
-    const midColumn = {
-      width: "30%",
-    }
-
-    const smallColumn = {
-      width: "10%",
-    }
-
     return (
-      <div className="table">
-        <div className="table-header">
-          <span style={{ width: '40%' }}>
-            <Sort
-              sortKey={'TITLE'}
-              onSort={this.onSort}
-              activeSortKey={sortKey}
-            >
-              Title
-            </Sort>
-          </span>
-          <span style={{ width: '30%' }}>
-            <Sort
-              sortKey={'AUTHOR'}
-              onSort={this.onSort}
-              activeSortKey={sortKey}
-            >
-              Author
-            </Sort>
-          </span>
-          <span style={{ width: '10%' }}>
-            <Sort
-              sortKey={'COMMENTS'}
-              onSort={this.onSort}
-              activeSortKey={sortKey}
-            >
-              Comments
-            </Sort>
-          </span>
-          <span style={{ width: '10%' }}>
-            <Sort
-              sortKey={'POINTS'}
-              onSort={this.onSort}
-              activeSortKey={sortKey}
-            >
-              Points
-            </Sort>
-          </span>
-          <span style={{ width: '10%' }}>
-            Archive
-          </span>
-        </div>
-        {reverseSortedList.map(item => (
-          <div key={item.objectID} className="table-row">
-            <span style={largeColumn}>
-              <a href={item.url} target="_blank">{item.title}</a>
-            </span>
-            <span style={midColumn}>{item.author}</span>
-            <span style={smallColumn}>{item.num_comments}</span>
-            <span style={smallColumn}>{item.points}</span>
-            <span style={smallColumn}>
-              <Button
-                onClick={() => onDismiss(item.objectID)}
-                className={"button-active"}
-              >
-                Dismiss
-              </Button>
-            </span>
-          </div>
-        ))}
-      </div>);
+      <div className='table-responsive'>
+        <table className="table table-striped">
+          <thead className="table-success">
+            <tr>
+              <th scope="col">
+                <Sort
+                  sortKey={'TITLE'}
+                  onSort={this.onSort}
+                  activeSortKey={sortKey}
+                >
+                  Title
+                </Sort>
+              </th>
+              <th scope="col">
+                <Sort
+                  sortKey={'AUTHOR'}
+                  onSort={this.onSort}
+                  activeSortKey={sortKey}
+                >
+                  Author
+                </Sort>
+              </th>
+              <th scope="col" className='comments'>
+                <Sort
+                  sortKey={'COMMENTS'}
+                  onSort={this.onSort}
+                  activeSortKey={sortKey}
+                >
+                  Comments
+                </Sort>
+              </th>
+              <th scope="col" className='points'>
+                <Sort
+                  sortKey={'POINTS'}
+                  onSort={this.onSort}
+                  activeSortKey={sortKey}
+                >
+                  Points
+                </Sort>
+              </th>
+              <th scope="col" style={{ fontWeight:400 }}>
+                Archive
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {reverseSortedList.map(item => (
+              <tr key={item.objectID}>
+                <td className='text-center align-middle  text-wrap'>
+                  <a href={item.url} target="_blank" rel="noreferrer">{item.title}</a>
+                </td>
+                <td className='align-middle text-center'>{item.author}</td>
+                <td className='align-middle text-center comments'>{item.num_comments}</td>
+                <td className='align-middle text-center points'>{item.points}</td>
+                <td className='align-middle text-center'>
+                  <Button
+                    onClick={() => onDismiss(item.objectID)}
+                    className="btn btn-primary align-middle"
+                  >
+                    Dismiss
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
   }
 }
 
@@ -373,7 +370,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const Loading = () => <div ><FontAwesomeIcon className='spinner' style={{ fontSize: 60}} icon={faSpinner} color="green" /></div>;
+const Loading = () => <div ><FontAwesomeIcon className='spinner' style={{ fontSize: 60 }} icon={faSpinner} color="green" /></div>;
 
 
 const withLoading = (Component) => ({ isLoading, ...rest }) =>
