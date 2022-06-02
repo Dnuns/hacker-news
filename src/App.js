@@ -330,7 +330,7 @@ class Table extends Component {
                 <td className='align-middle text-center'>
                   <Button
                     onClick={() => onDismiss(item.objectID)}
-                    className="btn btn-primary align-middle"
+                    className="btn btn-danger align-middle"
                   >
                     Dismiss
                   </Button>
