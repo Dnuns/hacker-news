@@ -4,14 +4,14 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faSpinner, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { sortBy } from 'lodash'
 import classNames from 'classnames';
 
 
 const DEFAULT_QUERY = '';
 const DEFAULT_HPP = '50';
-const PATH_BASE = 'https://hn.algolia.com/api/v1';
+const PATH_BASE = 'https://hn.algolia.com/api/v111';
 const PATH_SEARCH = '/search';
 const PARAM_SEARCH = 'query=';
 const PARAM_PAGE = 'page=';
@@ -148,7 +148,7 @@ class App extends Component {
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
 
     if (error) {
-      return <p>Something went wrong.</p>
+      return <p style={{textAlign:'center', fontSize:18, marginTop:50}}><FontAwesomeIcon color='red' icon={faTriangleExclamation}/> Something went wrong.</p>
     }
 
     return (
@@ -166,7 +166,7 @@ class App extends Component {
           {
             error
               ? <div className="interactions">
-                <p>Something went wrong.</p>
+               <p style={{textAlign:'center', fontSize:18, marginTop:50}}><FontAwesomeIcon color='red' icon={faTriangleExclamation}/> Something went wrong.</p>
               </div>
               : <Table
                 list={list}
