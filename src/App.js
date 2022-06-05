@@ -35,7 +35,7 @@ const updateSearchTopStoriesState = (hits, page) => (prevState) => {
 
   const updatedHits = [
     ...oldHits, //chagended
-    ...hits  
+    ...hits
   ];
 
   return {
@@ -143,13 +143,16 @@ class App extends Component {
       error,
       isLoading,
     } = this.state;
+   
 
     const page = (results && results[searchKey] && results[searchKey].page) || 0;
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
 
     if (error) {
       return <p style={{ textAlign: 'center', fontSize: 18, marginTop: 50 }}><FontAwesomeIcon color='red' icon={faTriangleExclamation} /> Something went wrong.</p>
-    }
+    } 
+    
+    console.log(list)
 
     return (
       <div className="App">
@@ -181,14 +184,18 @@ class App extends Component {
                   Less
                 </Button>
               </div>}
-            <div className="interactions">
-              <ButtonWithLoading
-                className='btn btn-primary'
-                isLoading={isLoading}
-                onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
-                More
-              </ButtonWithLoading>
-            </div>
+            {(list.length === 0) ?
+              null
+              : <div className="interactions">
+                <ButtonWithLoading
+                  className='btn btn-primary'
+                  isLoading={isLoading}
+                  onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+                  More
+                </ButtonWithLoading>
+              </div> 
+            }
+
           </div>
 
         </div>
