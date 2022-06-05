@@ -9,8 +9,8 @@ import { sortBy } from 'lodash'
 import classNames from 'classnames';
 
 
-const DEFAULT_QUERY = 'redux';
-const DEFAULT_HPP = '50';
+const DEFAULT_QUERY = 'python';
+const DEFAULT_HPP = '100';
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
 const PARAM_SEARCH = 'query=';
@@ -34,9 +34,8 @@ const updateSearchTopStoriesState = (hits, page) => (prevState) => {
     : [];
 
   const updatedHits = [
-    ...hits,
-    oldHits //chagended
-    
+    ...oldHits, //chagended
+    ...hits  
   ];
 
   return {
@@ -79,7 +78,7 @@ class App extends Component {
 
   setSearchTopStories(result) {
     const { hits, page } = result;
-    this.setState(updateSearchTopStoriesState(hits, page))
+    this.setState(updateSearchTopStoriesState(hits, page));
   }
 
   fetchSearchTopStories(searchTerm, page = 0) {
