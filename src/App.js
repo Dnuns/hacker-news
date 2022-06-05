@@ -150,9 +150,7 @@ class App extends Component {
 
     if (error) {
       return <p style={{ textAlign: 'center', fontSize: 18, marginTop: 50 }}><FontAwesomeIcon color='red' icon={faTriangleExclamation} /> Something went wrong.</p>
-    } 
-    
-    console.log(list)
+    }
 
     return (
       <div className="App">
