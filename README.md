@@ -18,7 +18,7 @@ This project was made while reading the book "The Road To Learn React".
 
 I learned basic and advanced concepts in React.
 
-I did all the extra tasks suggested for the app and added some improvements like the "less" button, responsiveness and small css tweaks.
+I added some improvements like the "less" button, responsiveness with bootstrap and small css tweaks.
 
 ## Links
 
@@ -32,6 +32,7 @@ https://safe-savannah-95089.herokuapp.com
 ## preview
 ![screenshot](readme_img/preview.jpg)
 
+![screenshot](readme_img/mob_preview.png)
 ---
 
 ## Available Scripts
