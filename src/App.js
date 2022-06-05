@@ -9,8 +9,8 @@ import { sortBy } from 'lodash'
 import classNames from 'classnames';
 
 
-const DEFAULT_QUERY = 'python';
-const DEFAULT_HPP = '100';
+const DEFAULT_QUERY = 'Enter your search term...';
+const DEFAULT_HPP = '50';
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
 const PARAM_SEARCH = 'query=';
