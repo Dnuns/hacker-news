@@ -9,7 +9,7 @@ import { sortBy } from 'lodash'
 import classNames from 'classnames';
 
 
-const DEFAULT_QUERY = '';
+const DEFAULT_QUERY = 'redux';
 const DEFAULT_HPP = '50';
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
@@ -34,8 +34,9 @@ const updateSearchTopStoriesState = (hits, page) => (prevState) => {
     : [];
 
   const updatedHits = [
-    oldHits, //chagended
-    ...hits
+    ...hits,
+    oldHits //chagended
+    
   ];
 
   return {
