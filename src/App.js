@@ -11,7 +11,7 @@ import classNames from 'classnames';
 
 const DEFAULT_QUERY = '';
 const DEFAULT_HPP = '50';
-const PATH_BASE = 'https://hn.algolia.com/api/v111';
+const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
 const PARAM_SEARCH = 'query=';
 const PARAM_PAGE = 'page=';
@@ -34,7 +34,7 @@ const updateSearchTopStoriesState = (hits, page) => (prevState) => {
     : [];
 
   const updatedHits = [
-    ...oldHits,
+    oldHits, //chagended
     ...hits
   ];
 
@@ -148,7 +148,7 @@ class App extends Component {
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
 
     if (error) {
-      return <p style={{textAlign:'center', fontSize:18, marginTop:50}}><FontAwesomeIcon color='red' icon={faTriangleExclamation}/> Something went wrong.</p>
+      return <p style={{ textAlign: 'center', fontSize: 18, marginTop: 50 }}><FontAwesomeIcon color='red' icon={faTriangleExclamation} /> Something went wrong.</p>
     }
 
     return (
@@ -166,7 +166,7 @@ class App extends Component {
           {
             error
               ? <div className="interactions">
-               <p style={{textAlign:'center', fontSize:18, marginTop:50}}><FontAwesomeIcon color='red' icon={faTriangleExclamation}/> Something went wrong.</p>
+                <p style={{ textAlign: 'center', fontSize: 18, marginTop: 50 }}><FontAwesomeIcon color='red' icon={faTriangleExclamation} /> Something went wrong.</p>
               </div>
               : <Table
                 list={list}
@@ -277,7 +277,7 @@ class Table extends Component {
         <table className="table table-striped">
           <thead className="table-success">
             <tr>
-              <th scope="col">
+              <th scope="col" className='title'>
                 <Sort
                   sortKey={'TITLE'}
                   onSort={this.onSort}
@@ -286,7 +286,7 @@ class Table extends Component {
                   Title
                 </Sort>
               </th>
-              <th scope="col">
+              <th scope="col" className='author'>
                 <Sort
                   sortKey={'AUTHOR'}
                   onSort={this.onSort}
@@ -313,14 +313,14 @@ class Table extends Component {
                   Points
                 </Sort>
               </th>
-              <th scope="col" style={{ fontWeight:400 }}>
+              <th scope="col" style={{ fontWeight: 400 }}>
                 Archive
               </th>
             </tr>
           </thead>
           <tbody>
-            {reverseSortedList.map(item => (
-              <tr key={item.objectID}>
+            {reverseSortedList.map((item, index) => (
+              <tr key={index}>
                 <td className='text-center align-middle  text-wrap'>
                   <a href={item.url} target="_blank" rel="noreferrer">{item.title}</a>
                 </td>
