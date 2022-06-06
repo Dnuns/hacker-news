@@ -18,7 +18,7 @@ This project was made while reading the book "The Road To Learn React".
 
 I learned basic and advanced concepts in React.
 
-I added some improvements like the "less" button, responsiveness with bootstrap and small css tweaks.
+I added some improvements like responsiveness with bootstrap and small css tweaks.
 
 ## Links
 
