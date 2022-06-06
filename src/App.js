@@ -143,7 +143,7 @@ class App extends Component {
       error,
       isLoading,
     } = this.state;
-   
+
 
     const page = (results && results[searchKey] && results[searchKey].page) || 0;
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
@@ -175,13 +175,6 @@ class App extends Component {
               />
           }
           <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
-            {(page === 0 || isLoading) ?
-              null :
-              <div className="interactions">
-                <Button className='btn btn-primary' onClick={() => this.fetchSearchTopStories(searchKey, page - 1)}>
-                  Less
-                </Button>
-              </div>}
             {(list.length === 0) ?
               null
               : <div className="interactions">
@@ -191,11 +184,9 @@ class App extends Component {
                   onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
                   More
                 </ButtonWithLoading>
-              </div> 
+              </div>
             }
-
           </div>
-
         </div>
       </div>
     );
