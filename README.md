@@ -23,7 +23,7 @@ I added some improvements like responsiveness with bootstrap and small css tweak
 ## Links
 
 ### heroku link
-https://safe-savannah-95089.herokuapp.com
+https://hacker-news-roan.vercel.app
 
 ## The book (The Road To Learn React)
 ![screenshot](readme_img/book.png)
