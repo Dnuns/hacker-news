@@ -9,7 +9,7 @@ import { sortBy } from 'lodash'
 import classNames from 'classnames';
 
 
-const DEFAULT_QUERY = 'Enter your search term...';
+const DEFAULT_QUERY = 'redux';
 const DEFAULT_HPP = '50';
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
@@ -175,17 +175,15 @@ class App extends Component {
               />
           }
           <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
-            {(list.length === 0) ?
-              null
-              : <div className="interactions">
-                <ButtonWithLoading
-                  className='btn btn-primary'
-                  isLoading={isLoading}
-                  onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
-                  More
-                </ButtonWithLoading>
-              </div>
-            }
+            <div className="interactions">
+              <ButtonWithLoading
+                className='btn btn-primary'
+                isLoading={isLoading}
+                onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+                More
+              </ButtonWithLoading>
+            </div>
+
           </div>
         </div>
       </div>
