@@ -22,7 +22,7 @@ I added some improvements like responsiveness with bootstrap and small css tweak
 
 ## Links
 
-### heroku link
+### Vercel link
 https://hacker-news-roan.vercel.app
 
 ## The book (The Road To Learn React)
