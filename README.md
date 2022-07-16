@@ -2,14 +2,7 @@
 
 ## Tech Stack
 
-<img align="left" alt="React.js" width="28px" src="https://cdn-icons-png.flaticon.com/512/919/919851.png" />
-
-</br>
-</br>
-HTML, CSS, javaScript, Jest, Bootstrap, font Awesome
-
-</br>
-</br>
+React, HTML, CSS, javaScript, Jest, Bootstrap, font Awesome
 
 ---
 
