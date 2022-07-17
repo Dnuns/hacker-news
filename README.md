@@ -4,8 +4,6 @@
 
 React, HTML, CSS, javaScript, Jest, Bootstrap, font Awesome
 
----
-
 ## About this project
 This project was made while reading the book "The Road To Learn React".
 
